@@ -3,7 +3,7 @@
 First Clone the project into your local system.
 
 Then install all the dependencies from client and server folders with the help of "npm i"
-Then add dot env file with following parameters:
+Then add dot env file in the server folder with following parameters:
 MONGO_URI -- consists mongodb connection string
 SECRET_KEY -- secret key for jwt token
 PORT -- Node server port 
