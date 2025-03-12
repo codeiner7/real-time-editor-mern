@@ -34,9 +34,18 @@ let cursors = {};
 io.on('connection', (socket) => {
   console.log('A user connected:', socket.id);
 
-  socket.on('joinDocument', (documentId, username) => {
+  socket.on('joinDocument', async (documentId, username) => {
     socket.join(documentId);
     socket.username = username;
+
+    try {
+      const document = await Document.findById(documentId);
+      if (document) {
+        socket.emit('loadDocument', document.content);
+      }
+    } catch (error) {
+      console.error('Error loading document:', error);
+    }
   });
 
   socket.on('cursorMove', ({ documentId, username, cursorPos }) => {
@@ -49,6 +58,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('saveDocument', async ({ documentId, content }) => {
+    console.log(documentId, content, 'saveDocument')
     try {
       await Document.findByIdAndUpdate(documentId, { content });
     } catch (error) {
