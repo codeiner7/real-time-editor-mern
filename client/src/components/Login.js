@@ -37,7 +37,7 @@ const Login = () => {
       </form>
       {message && <p style={styles.message}>{message}</p>}
       <p style={styles.linkText}>
-        Don't have an account? <a href="/register" style={styles.link}>Register here</a>
+        Don't have an account? <a href="/" style={styles.link}>Register here</a>
       </p>
     </div>
   );
