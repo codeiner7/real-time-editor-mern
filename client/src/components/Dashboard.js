@@ -38,29 +38,86 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard">
-      <h2>My Documents</h2>
+    <div style={styles.container}>
+      <h2 style={styles.heading}>My Documents</h2>
 
-      <div>
+      <div style={styles.inputContainer}>
         <input
           type="text"
           placeholder="Enter document title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          style={styles.input}
         />
-        <button onClick={createDocument}>Create Document</button>
+        <button onClick={createDocument} style={styles.button}>Create</button>
       </div>
 
-      <ul>
+      <ul style={styles.list}>
         {documents.map((doc) => (
-          <li key={doc._id}>
+          <li key={doc._id} style={styles.listItem}>
             <span>{doc.title}</span>
-            <button onClick={() => navigate(`/editor/${doc._id}`)}>Edit</button>
+            <button onClick={() => navigate(`/editor/${doc._id}`)} style={styles.editButton}>Edit</button>
           </li>
         ))}
       </ul>
     </div>
   );
+};
+
+const styles = {
+  container: {
+    maxWidth: '500px',
+    margin: '20px auto',
+    padding: '15px',
+    border: '1px solid #ccc',
+    borderRadius: '5px',
+  },
+  heading: {
+    textAlign: 'center',
+    fontSize: '20px',
+    marginBottom: '10px',
+  },
+  inputContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginBottom: '15px',
+  },
+  input: {
+    flex: 1,
+    padding: '8px',
+    fontSize: '14px',
+    border: '1px solid #ccc',
+    borderRadius: '4px',
+    marginRight: '10px',
+  },
+  button: {
+    padding: '8px 12px',
+    fontSize: '14px',
+    border: 'none',
+    backgroundColor: '#007bff',
+    color: 'white',
+    cursor: 'pointer',
+    borderRadius: '3px',
+  },
+  list: {
+    listStyle: 'none',
+    padding: 0,
+  },
+  listItem: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: '10px',
+    borderBottom: '1px solid #ccc',
+  },
+  editButton: {
+    padding: '5px 10px',
+    fontSize: '12px',
+    border: 'none',
+    backgroundColor: '#28a745',
+    color: 'white',
+    cursor: 'pointer',
+    borderRadius: '3px',
+  }
 };
 
 export default Dashboard;

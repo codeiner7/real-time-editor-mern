@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
       const { data } = await axios.post('http://localhost:8000/auth/login', { email, password });
       localStorage.setItem('token', data.token);
       setUser(jwtDecode(data.token));
-      navigate('/editor'); // Redirect after login
+      navigate('/editor');
     } catch (error) {
       console.error('Login failed', error);
     }
