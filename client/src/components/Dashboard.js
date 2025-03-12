@@ -37,9 +37,18 @@ const Dashboard = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    navigate('/login');
+  };
+
   return (
     <div style={styles.container}>
-      <h2 style={styles.heading}>My Documents</h2>
+      <div style={styles.header}>
+        <h2 style={styles.heading}>My Documents</h2>
+        <button onClick={handleLogout} style={styles.logoutButton}>Logout</button>
+      </div>
 
       <div style={styles.inputContainer}>
         <input
@@ -72,10 +81,23 @@ const styles = {
     border: '1px solid #ccc',
     borderRadius: '5px',
   },
-  heading: {
-    textAlign: 'center',
-    fontSize: '20px',
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: '10px',
+  },
+  heading: {
+    fontSize: '20px',
+  },
+  logoutButton: {
+    padding: '6px 12px',
+    fontSize: '14px',
+    border: 'none',
+    backgroundColor: '#dc3545',
+    color: 'white',
+    cursor: 'pointer',
+    borderRadius: '3px',
   },
   inputContainer: {
     display: 'flex',
@@ -117,7 +139,7 @@ const styles = {
     color: 'white',
     cursor: 'pointer',
     borderRadius: '3px',
-  }
+  },
 };
 
 export default Dashboard;
